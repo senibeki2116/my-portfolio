@@ -12,6 +12,7 @@ import {
   ExternalLink,
 } from "lucide-react";
 import "./App.css";
+
 import hotelBookingScreenshot from "./assets/projects/hotelbookingapp-homepage.png";
 import ecommerceScreenshot from "./assets/projects/ecommerce-homepage.png";
 
@@ -28,7 +29,8 @@ const projects = [
       "A full-stack hotel booking platform where customers can discover hotels, manage reservations, create wishlists, and submit reviews. Includes hotel admin and super admin dashboards.",
     technologies: ["React", "Node.js", "Express", "MongoDB", "JWT", "REST API"],
     status: "In Progress",
-    link: "https://github.com/senibeki2116/HotelBookingApp",
+    github: "https://github.com/senibeki2116/HotelBookingApp",
+    liveDemo: null,
     visual: "stayora",
     screenshot: hotelBookingScreenshot,
   },
@@ -38,16 +40,19 @@ const projects = [
     category: "FULL-STACK PROJECT",
     subtitle: "Modern Online Shopping Platform",
     description:
-      "A modern ecommerce application designed to deliver a smooth online shopping experience, featuring product browsing, responsive interfaces, and a scalable full-stack architecture.",
+      "A full-stack ecommerce application featuring product browsing, categories, user authentication, shopping functionality, and a responsive online shopping experience.",
     technologies: [
       "Next.js",
       "React",
       "TypeScript",
       "Tailwind CSS",
       "PostgreSQL",
+      "Prisma",
+      "NestJS",
     ],
-    status: "In Progress",
-    link: "https://github.com/senibeki2116/Ecommerce-System",
+    status: "Live",
+    github: "https://github.com/senibeki2116/Ecommerce-System",
+    liveDemo: "https://ecommerce-system-teal.vercel.app/",
     visual: "commerce",
     screenshot: ecommerceScreenshot,
   },
@@ -223,7 +228,7 @@ function App() {
             className="nav-github"
             href={github}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
           >
             GitHub <ArrowUpRight size={14} />
           </a>
@@ -275,7 +280,7 @@ function App() {
               <a
                 href={github}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="button button-quiet"
               >
                 <Github size={16} />
@@ -445,6 +450,7 @@ function App() {
                     alt={`${project.name} project homepage screenshot`}
                     loading="lazy"
                   />
+
                   <span className="work-status">
                     <i /> {project.status}
                   </span>
@@ -463,24 +469,38 @@ function App() {
                   </div>
 
                   <div className="work-actions">
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="case-study"
-                    >
-                      View on GitHub <ArrowUpRight size={15} />
-                    </a>
+                    {project.liveDemo ? (
+                      <a
+                        href={project.liveDemo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="case-study"
+                      >
+                        Live Demo <ArrowUpRight size={15} />
+                      </a>
+                    ) : (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="case-study"
+                      >
+                        View on GitHub <ArrowUpRight size={15} />
+                      </a>
+                    )}
 
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="project-arrow"
-                      aria-label={`View ${project.name} on GitHub`}
-                    >
-                      <ExternalLink size={17} />
-                    </a>
+                    {project.liveDemo && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="project-arrow"
+                        aria-label={`View ${project.name} source code on GitHub`}
+                        title="View source code on GitHub"
+                      >
+                        <Github size={17} />
+                      </a>
+                    )}
                   </div>
                 </div>
               </article>
@@ -521,18 +541,22 @@ function App() {
                   management platform with customer, hotel admin, and super
                   admin features.
                 </li>
+
                 <li>
                   Built frontend interfaces using React and developed backend
                   functionality using Node.js and Express.
                 </li>
+
                 <li>
                   Worked with MongoDB, REST APIs, authentication, booking
                   management, and database integration.
                 </li>
+
                 <li>
                   Developed an Ecommerce System using Next.js, TypeScript,
                   Tailwind CSS, and PostgreSQL.
                 </li>
+
                 <li>
                   Focused on responsive UI, reusable components, clean code, and
                   practical problem-solving.
@@ -580,6 +604,7 @@ function App() {
                 key={group.title}
               >
                 <h3>{group.title}</h3>
+
                 <div className="skill-tags">
                   {group.items.map((skill) => (
                     <span key={skill}>{skill}</span>
